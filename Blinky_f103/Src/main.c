@@ -39,7 +39,7 @@ int main(void)
 
 	GPIO_PeriClkControl(GPIOB, ENABLE);
 	GPIO_PeriClkControl(GPIOC, ENABLE);
-	GPIO_PeriClkControl(GPIOA, ENABLE);
+	//GPIO_PeriClkControl(GPIOA, ENABLE);
 
 	GPIO_Handle_t redled, greenLed;
 
