@@ -71,7 +71,7 @@
 
  #define AFIO_BASEADDR		(APB2PERIPH_BASEADDR + 0x00000000U)		// Base Address of AFIO Register
  #define EXT1_BASEADDR		(APB2PERIPH_BASEADDR + 0x00000400U)		// Base Address of EXT1 Register
- #define GPIOA_BASEADDR		(APB2PERIPH_BASEADDR + 0X00008000U)		// Base Address of PORTA
+ #define GPIOA_BASEADDR		(APB2PERIPH_BASEADDR + 0X00000800U)		// Base Address of PORTA
  #define GPIOB_BASEADDR		(APB2PERIPH_BASEADDR + 0X00000C00U)		// Base Address of PORTB
  #define GPIOC_BASEADDR		(APB2PERIPH_BASEADDR + 0X00001000U)		// Base Address of PORTC
  #define GPIOD_BASEADDR		(APB2PERIPH_BASEADDR + 0X00001400U)		// Base Address of PORTD
@@ -169,7 +169,7 @@ typedef struct
 
 #define AFIO_PCLK_EN()		(RCC->APB2ENR |= (1 << 0))
 
-#define GPIOA_PCLK_EN()		(RCC->APB2ENR |= (1 << 2))	// Setting 1st bit in AHB1ENR to enable clock for PORTA
+#define GPIOA_PCLK_EN()		(RCC->APB2ENR |= (1 << 2))	// Setting 2nd bit in AHB1ENR to enable clock for PORTA
 #define GPIOB_PCLK_EN()		(RCC->APB2ENR |= (1 << 3))
 #define GPIOC_PCLK_EN()		(RCC->APB2ENR |= (1 << 4))
 #define GPIOD_PCLK_EN()		(RCC->APB2ENR |= (1 << 5))

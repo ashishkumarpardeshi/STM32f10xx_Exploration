@@ -98,7 +98,7 @@ void GPIO_PeriClkControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi)
 		}
 		else if(pGPIOx == GPIOB)
 		{
-			GPIOA_PCLK_EN();
+			GPIOB_PCLK_EN();
 		}
 		else if(pGPIOx == GPIOC)
 		{

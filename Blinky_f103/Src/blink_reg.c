@@ -6,8 +6,8 @@
  */
 
 
-#include"../drivers/Inc/STM32f103xx_gpio_driver.h"
-#include"../drivers/Inc/STM32f103xx.h"
+#include "STM32f103xx_gpio_driver.h"
+#include "STM32f103xx.h"
 
 /*#if !defined(__SOFT_FP__) && defined(__ARM_FP)
   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
@@ -35,6 +35,9 @@ int main(void)
 		delay_ms(100);
 	}*/
 
+	GPIO_PeriClkControl(GPIOB, ENABLE);
+	GPIOB->CRH = 0x44442444;
+
 
 
 	GPIO_PeriClkControl(GPIOC, ENABLE);			// for GPIOC this is working great. So now the question is why it is not working for GPIOA and GPIOB
@@ -47,8 +50,10 @@ int main(void)
 	while(1)		// infinite loop
 	{
 		GPIOC->ODR |= (1 << 13);			// setting bit PB13
+		GPIOB->ODR |= (1 << 11);
 		delay_ms(1000);						// waste approx 100 ms
 		GPIOC->ODR &= ~(1 << 13);			// clear bit PB13
+		GPIOB->ODR &= ~(1 << 11);
 		delay_ms(100);
 	}
 
