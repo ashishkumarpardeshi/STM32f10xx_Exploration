@@ -35,8 +35,12 @@ int main(void)
 		delay_ms(100);
 	}*/
 
+	GPIO_PeriClkControl(GPIOA, ENABLE);
+	GPIOA->CRH = 0x44444442;
+
 	GPIO_PeriClkControl(GPIOB, ENABLE);
 	GPIOB->CRH = 0x44442444;
+
 
 
 
