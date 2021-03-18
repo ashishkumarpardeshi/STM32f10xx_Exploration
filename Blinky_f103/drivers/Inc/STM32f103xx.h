@@ -5,8 +5,8 @@
  *      Author: ashish
  */
 
-#ifndef INC_STM32F103XX_H_
-#define INC_STM32F103XX_H_
+#ifndef STM32F103XX_H_
+#define STM32F103XX_H_
 
 #include <stdint.h>
 

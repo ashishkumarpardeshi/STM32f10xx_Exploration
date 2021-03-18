@@ -5,8 +5,8 @@
  *      Author: ashish
  */
 
-#ifndef INC_STM32F103XX_GPIO_DRIVER_H_
-#define INC_STM32F103XX_GPIO_DRIVER_H_
+#ifndef STM32F103XX_GPIO_DRIVER_H_
+#define STM32F103XX_GPIO_DRIVER_H_
 
 #include"STM32f103xx.h"
 

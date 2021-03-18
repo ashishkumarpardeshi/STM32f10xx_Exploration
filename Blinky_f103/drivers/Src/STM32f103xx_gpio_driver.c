@@ -6,8 +6,8 @@
  */
 
 
-#include"../drivers/Inc/STM32f103xx.h"
-#include"../drivers/Inc/STM32f103xx_gpio_driver.h"
+#include "STM32f103xx.h"
+#include "STM32f103xx_gpio_driver.h"
 
 /**************************************************************************************
  *                             APIs Function Definition
