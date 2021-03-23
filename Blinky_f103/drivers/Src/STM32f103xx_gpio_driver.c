@@ -148,8 +148,8 @@ void GPIO_PeriClkControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi)
 // Read single bit of PORTx
 uint8_t GPIO_ReadPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber)
 {
-	uint8_t value;
-	value  = ((uint8_t)pGPIOx -> IDR >> PinNumber) & 0x00000001;
+	uint16_t value;
+	value  = ((uint16_t)pGPIOx -> IDR >> PinNumber) & 0x00000001;
 	return value;
 }
 
@@ -183,4 +183,23 @@ void GPIO_WritePort(GPIO_RegDef_t *pGPIOx, uint16_t value)
 void GPIO_TogglePin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber)
 {
 	pGPIOx -> ODR ^= (1 << PinNumber);
+}
+
+//Atomic Set Reset the Pin
+void GPIO_Atomic_SetResetPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber, uint8_t value) //Atomic Set/Clear the Pin 0:16 as per Value
+{
+	if(value == GPIO_PIN_SET)
+	{
+		pGPIOx -> BSRR = 1 << PinNumber;
+	}
+	else
+	{
+		pGPIOx -> BSRR = 1 << (PinNumber + 16);
+	}
+}
+
+
+void GPIO_Atomic_ResetPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber) // Atomic Clear the Pin 0:16
+{
+	pGPIOx -> BRR = 1 << PinNumber;
 }

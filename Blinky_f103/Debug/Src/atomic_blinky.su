@@ -1,0 +1,2 @@
+atomic_blinky.c:21:5:main	32	static
+atomic_blinky.c:79:6:delay_ms	24	static,ignoring_inline_asm

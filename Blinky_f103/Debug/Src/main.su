@@ -1,2 +1,0 @@
-main.c:36:5:main	32	static
-main.c:85:6:delay_ms	24	static,ignoring_inline_asm

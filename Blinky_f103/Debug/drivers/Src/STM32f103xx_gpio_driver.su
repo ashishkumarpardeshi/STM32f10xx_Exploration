@@ -6,3 +6,5 @@ STM32f103xx_gpio_driver.c:157:10:GPIO_ReadPort	24	static
 STM32f103xx_gpio_driver.c:165:6:GPIO_WritePin	16	static
 STM32f103xx_gpio_driver.c:178:6:GPIO_WritePort	16	static
 STM32f103xx_gpio_driver.c:183:6:GPIO_TogglePin	16	static
+STM32f103xx_gpio_driver.c:189:6:GPIO_Atomic_SetResetPin	16	static
+STM32f103xx_gpio_driver.c:202:6:GPIO_Atomic_ResetPin	16	static
