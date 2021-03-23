@@ -198,7 +198,7 @@ void GPIO_Atomic_SetResetPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber, uint8_t v
 	}
 }
 
-
+//Atomic Reset the Pin
 void GPIO_Atomic_ResetPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber) // Atomic Clear the Pin 0:16
 {
 	pGPIOx -> BRR = 1 << PinNumber;

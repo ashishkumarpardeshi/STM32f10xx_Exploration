@@ -128,8 +128,8 @@ void GPIO_TogglePin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber);
  * BSRR and BRR Set Reset
  */
 
-void GPIO_Atomic_SetResetPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber, uint8_t value);
-void GPIO_Atomic_ResetPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber);
+void GPIO_Atomic_SetResetPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber, uint8_t value);	//BSRR
+void GPIO_Atomic_ResetPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber);					//BRR
 
 
 /*
