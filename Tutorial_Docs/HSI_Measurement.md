@@ -181,7 +181,7 @@ Lets write a code for Configuring PA8 pin as MCO pin (Alternate Function).
 
     *pGpioACrhReg &= ~(0xF << 0); // clear bit 0 to 3
 
-    *pGpioACrhReg |= 0xE; // write 1101 to Bits[3:0] of GPIOA_CRH
+    *pGpioACrhReg |= 0x9; // write 1001 to Bits[3:0] of GPIOA_CRH
 
 
 Cool, so we are almost done to this task. Lets summarize what we have done so far and then will organize the above multiple pieces of code into a single functioning code.
@@ -250,7 +250,7 @@ Cool, so we are almost done to this task. Lets summarize what we have done so fa
 
       *pGpioACrhReg &= ~(0xF << 0); // clear bit 0 to 3
 
-      *pGpioACrhReg |= 0xE; // write 1101 to Bits[3:0] of GPIOA_CRH
+      *pGpioACrhReg |= 0x9; // write 1001 to Bits[3:0] of GPIOA_CRH
 
       while(1)    // Infinite Loop
       {
@@ -267,6 +267,36 @@ Okay time to compile and upload this code to target (STM32F103C8 (Bluepill Board
 <p align="center">
   <img width="1847" height="1049" src="./Assets/HSI_Measure_Code.png">
 </p>
+
+I have succesfully uploaded the Hex file using STLink_V2 Programmer/Debugger and also captured the HSI Clock Signal at PA8 (MCO) pin using 24 MHZ Logic Analyzer.
+
+Here is the screenshot.
+
+<p align="center">
+  <img width="1314" height="739" src="./Assets/HSI_Clock_Analyze.jpeg">
+</p>
+
+<br>
+
+***The Clock signal is visible with following specifications:***
+
+> **Frequency**:  ***8 MHz***
+>
+> **Clock Cycle Period**: ***125 ns***
+>
+> **Duty Cycle**: ***66.67 %***
+>
+> **Width**: ***12 MHz***
+
+<br>
+
+
+### **So here the frequency and Clock Cycle period is measured correctly but Duty cycle should be 50 % instead of 66.67%.**
+
+### **I think I need to investigate regarding the duty cycle and width (I have no clue of width).**
+
+### **Will be back soon with investigation results and answers to my queriers.**
+
 
 
 
