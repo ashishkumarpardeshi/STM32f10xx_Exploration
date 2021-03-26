@@ -18,18 +18,19 @@ The main goal for designing this board is to boost the exploration and learning 
 <br>
 
 ### ***Peripheral Devices***
-- LEDs x 8
-- Buzzer x 1
-- Two Digit Seven Segment Display
+- LEDs x 4                          (Done)
+- Buzzer x 1                        (Done)
 - LCD 16 x 2
-- WS2812 Addressable LED x2
-- Push Buttons x 2
-- Potentiometer (Multiturn) x 1
+- WS2812 Addressable LED x 2        (Done)
+- Push Buttons x 2                  (Done)
+- Potentiometer (Multiturn) x 1     (Done)
+- LM35 Temperature Sensor           (Done)
+- LDR                               (Done)
 - ESP01 (WiFi MOdule)
 - HC-05 (Bluetooth Module)
 - SD Card Interface Slot
 - nRF24L01 Radio Module
-- OLED (128 x 64)
+- OLED (128 x 64)                   (Done)
 - MPU6050 (IMU)
 
 <br>

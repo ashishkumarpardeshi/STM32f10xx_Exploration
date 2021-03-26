@@ -32,7 +32,7 @@ To generate clock signal we have three main clock sources and any one of these t
 
 2. RC Oscillator                -> Internal to MCU      **(HSI: High Speed Internal Clock)**
 
-3. The PLL (Phase Lock Loop)     -> Internal to MCU to generate higher frequency using either External Crystal/Resonator Oscillator (HSE) or RC Internal Oscillator (HSI).
+3. The PLL (Phase Lock Loop)     -> Internal to MCU **(It is used to boost the crystal Oscillator clock frequency (HSE) or RC Oscillator clock frequency (HSI) to higher frequency clock).**
 
 
 <br>
@@ -49,8 +49,8 @@ To generate clock signal we have three main clock sources and any one of these t
 <br>
 <br>
 
-## High Speed External (HSE) Clock
-#
+# High Speed External (HSE) Clock
+
 
 HSE clock can be generated from two possible external clock sources.
 
@@ -84,6 +84,7 @@ In above HSE crystal/resonator hardware configuration we have
 <br>
 
 ## What is default Clock configuration of STM32F10xx after power-on/System Reset?
+#
 
 
 
@@ -96,6 +97,8 @@ In above HSE crystal/resonator hardware configuration we have
 - **Status bit** in the **Clock Control Register (RCC_CR)** indicate which clock(s) is (are) ready and which clock is currently used as System Clock.
 
 ### **HSE crystal/resonator Clock Configuration while writing code**
+
+<br>
 
 
 <p align="center">
@@ -119,6 +122,24 @@ bit cannot be reset if the HSE oscillator is used directly or indirectly as the 
 >
 >Set by hardware to indicate that the HSE oscillator is stable. This bit needs 6 cycles of the
 HSE oscillator clock to fall down after HSEON reset.
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+# Peripheral Clock Configuration
+
+- Before using any peripheral (GPIO, USART, SPI, I2C, Timers etc), its clock (Peripheral Clock) must be enabled using **Peripheral Clock Register**.
+
+- A peripheral will not respond to any configuration untill its peripheral clock is enabled.
+
+- After Power-on/Reset peripheral clock of all most all peripherals are by default disabled, important  to save power.
+
+<br>
+
+>Please Note : In STM32 MCUs, peripheral clocks are managed/configure using **RCC Registers**. 
 
 
 
