@@ -133,10 +133,10 @@ int main(void)
  80001ae:	687b      	ldr	r3, [r7, #4]
  80001b0:	601a      	str	r2, [r3, #0]
 
-    *pGpioACrhReg |= 0xE; // write 1101 to Bits[3:0] of GPIOA_CRH
+    *pGpioACrhReg |= 0xB; // write 1001 to Bits[3:0] of GPIOA_CRH
  80001b2:	687b      	ldr	r3, [r7, #4]
  80001b4:	681b      	ldr	r3, [r3, #0]
- 80001b6:	f043 020e 	orr.w	r2, r3, #14
+ 80001b6:	f043 020b 	orr.w	r2, r3, #11
  80001ba:	687b      	ldr	r3, [r7, #4]
  80001bc:	601a      	str	r2, [r3, #0]
 

@@ -55,7 +55,7 @@ int main(void)
 
     *pGpioACrhReg &= ~(0xF << 0); // clear bit 0 to 3
 
-    *pGpioACrhReg |= 0xE; // write 1101 to Bits[3:0] of GPIOA_CRH
+    *pGpioACrhReg |= 0xB; // write 1001 to Bits[3:0] of GPIOA_CRH
 
     while(1)    // Infinite Loop
     {

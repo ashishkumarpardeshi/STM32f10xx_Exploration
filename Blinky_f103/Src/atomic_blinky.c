@@ -5,8 +5,8 @@
  *      Author: ashish
  */
 
-#include "STM32f103xx_gpio_driver.h"
-#include "STM32f103xx.h"
+#include "../Drivers/Inc/STM32f103xx.h"
+#include "../Drivers/Inc/STM32f103xx_gpio_driver.h"
 
 
 

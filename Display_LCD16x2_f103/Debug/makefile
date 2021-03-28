@@ -11,7 +11,6 @@ RM := rm -rf
 -include sources.mk
 -include Startup/subdir.mk
 -include Src/subdir.mk
--include Drivers/Src/subdir.mk
 -include subdir.mk
 -include objects.mk
 
@@ -35,34 +34,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := blinky
+BUILD_ARTIFACT_NAME := lcd16x2_Display
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX := 
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME).$(BUILD_ARTIFACT_EXTENSION)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-blinky.elf \
+lcd16x2_Display.elf \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-blinky.list \
+lcd16x2_Display.list \
 
 OBJCOPY_BIN += \
-blinky.bin \
+lcd16x2_Display.bin \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: blinky.elf secondary-outputs
+main-build: lcd16x2_Display.elf secondary-outputs
 
 # Tool invocations
-blinky.elf: $(OBJS) $(USER_OBJS) /home/ashish/Documents/Embedded_World/STM32_World/STM32f10xx_Exploration/Blinky_f103/STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "blinky.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"/home/ashish/Documents/Embedded_World/STM32_World/STM32f10xx_Exploration/Blinky_f103/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="blinky.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+lcd16x2_Display.elf: $(OBJS) $(USER_OBJS) /home/ashish/Documents/Embedded_World/STM32_World/STM32f10xx_Exploration/Display_LCD16x2_f103/STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "lcd16x2_Display.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"/home/ashish/Documents/Embedded_World/STM32_World/STM32f10xx_Exploration/Display_LCD16x2_f103/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="lcd16x2_Display.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -71,13 +70,13 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-blinky.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "blinky.list"
+lcd16x2_Display.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "lcd16x2_Display.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-blinky.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "blinky.bin"
+lcd16x2_Display.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "lcd16x2_Display.bin"
 	@echo 'Finished building: $@'
 	@echo ' '
 
