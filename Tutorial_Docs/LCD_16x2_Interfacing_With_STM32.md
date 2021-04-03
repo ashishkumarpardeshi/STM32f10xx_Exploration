@@ -1,9 +1,39 @@
-# LCD 16 x 2 Interfacing with STM32
+# LCD 16x2 Interfacing with STM32
 
 Small tiny displays are awesome for displaying data for any Emebedded Systems. It is always fun to play around these displays.
 
+<p align="center">
+  <img src="./Assets/lcd5.jpg">
+</p>
+
+## Table of Contents
+- [LCD 16x2 Interfacing with STM32](#lcd-16x2-interfacing-with-stm32)
+
+  - [Table of Contents](#table-of-contents)
+
+  - [About this Article](#about-this-article)
+
+  - [Getting Started with LCD 16x2](#getting-started-with-lcd-16x2)
+
+  - [LCD 16x2 Pin Map](#lcd-16x2-pin-map)
+
+  - [LCD 16x2 Configuration Commands/Instructions](#lcd-16x2-configuration-commands/instructions)
+
+  - [LCD 16x2 Commands Sequences](#lcd-16x2-commands-sequences)
+
+  - [Acknowledgements and Resources](#acknowledgements-and-resources)
+  - [License](#license)
+
+  <br>
+
+## About this Article
+#
 In this article we will be exploring one of such LCD display know as **LCD (Liquid Crystal Displays)**.
 
+<br>
+
+## Getting Started with LCD 16x2
+#
 LCD are available in different sizes in terms of rows and columns, for example 16 x 2, 20 x 4 etc. All these LCD display works with same principle except they can show less or more content.
 
 Here we will be interfacing LCD 16 x 2.
@@ -16,9 +46,11 @@ Here we will be interfacing LCD 16 x 2.
 >
 >Thus LCD 16 x 2 can show 16 characters in each of the 2 rows (lines).
 
-
-
 <br>
+
+## LCD 16x2 Pin Map
+#
+
 
 <p align="center">
   <img src="./Assets/LCD16*2.png">
@@ -54,12 +86,9 @@ Here we will be interfacing LCD 16 x 2.
 
 <br>
 
-<br>
 
-
-## LCD 16 X 2 Commands
+## LCD 16x2 Configuration Commands/Instructions
 #
-
 Below is the image of some of the commands given in datasheets
 
 <p align="center">
@@ -94,7 +123,7 @@ Below is the image of some of the commands given in datasheets
 
 - For Increment Cusor and No Shift
 
-    - Command: 0 x 06 
+    - Command: 0 x 06 Acknowledgements and Resources
 
 // Cursor Positions
 
@@ -112,7 +141,10 @@ Below is the image of some of the commands given in datasheets
 
     - Command: 0x01
 
+<br>
 
+## LCD 16x2 Commands Sequences
+#
 ### **Initializing LCD - 4-Bit Mode**
 
 <br>
@@ -141,8 +173,7 @@ Below is the image of some of the commands given in datasheets
 >
 >- Write Low to RS Pin of LCD. (RS = 0)
 >
->- Send High to Low pulse on EN Pin of LCD. (EN = 1; delay(15); EN = 0)
->- Send High to Low pulse on EN Pin of LCD. 
+>- Send High to Low pulse on EN Pin of LCD. (EN = 1; delay (15); EN = 0)
 >
 >- Place lower nibble on data lines.
 >
@@ -165,3 +196,20 @@ Below is the image of some of the commands given in datasheets
 >- Place lower nibble on data lines.
 >
 >- Send High to Low pulse on EN Pin of LCD. (EN = 1; delay(15); EN = 0)
+
+<br>
+
+## Acknowledgements and Resources
+#
+
+<br>
+
+## License
+#
+
+- Distributed under the  [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) license.
+<p align="center">
+  <img src="./Assets/CC-SA.png">
+</p>
+
+
