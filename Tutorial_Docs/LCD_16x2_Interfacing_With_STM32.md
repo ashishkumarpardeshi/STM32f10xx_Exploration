@@ -27,7 +27,7 @@ Small displays are awesome for displaying data for any Embedded System. It is al
   <br>
 
 ## About this Article
-#
+
 - In this article we will be exploring one of such LCD display that is alphanumeric LCD 16x2, its Pin map, commands/instruction sets.
 
 - Will be interfacing it with STM32 and writing driver for its working.
@@ -52,7 +52,7 @@ LCD 16x2 is one of the most popular display in Embedded systems.
 <br>
 
 ## LCD 16x2 Pin Map
-#
+
 
 
 <p align="center">
@@ -91,8 +91,8 @@ LCD 16x2 is one of the most popular display in Embedded systems.
 
 
 ## LCD 16x2 Configuration Commands/Instructions
-#
-Below is the image of some of the commands given in datasheets
+
+Below is the image of some of the commands given in datasheet.
 
 <p align="center">
   <img src="./Assets/LCD_Instructions.png">
@@ -147,7 +147,7 @@ Below is the image of some of the commands given in datasheets
 <br>
 
 ## LCD 16x2 Commands Sequences
-#
+
 ### **Initializing LCD - 4-Bit Mode**
 
 <br>
@@ -203,12 +203,12 @@ Below is the image of some of the commands given in datasheets
 <br>
 
 ## Acknowledgements and Resources
-#
+
 
 <br>
 
 ## License
-#
+
 
 - Distributed under the  [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) license.
 <p align="center">
