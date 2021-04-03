@@ -1,9 +1,9 @@
 # LCD 16x2 Interfacing with STM32
 
-Small tiny displays are awesome for displaying data for any Emebedded Systems. It is always fun to play around these displays.
+Small displays are awesome for displaying data for any Embedded System. It is always fun to play around these displays.
 
 <p align="center">
-  <img src="./Assets/lcd5.jpg">
+  <img src="./Assets/lcd6.jpg">
 </p>
 
 ## Table of Contents
@@ -28,15 +28,18 @@ Small tiny displays are awesome for displaying data for any Emebedded Systems. I
 
 ## About this Article
 #
-In this article we will be exploring one of such LCD display know as **LCD (Liquid Crystal Displays)**.
+- In this article we will be exploring one of such LCD display that is alphanumeric LCD 16x2, its Pin map, commands/instruction sets.
+
+- Will be interfacing it with STM32 and writing driver for its working.
+
 
 <br>
 
 ## Getting Started with LCD 16x2
-#
-LCD are available in different sizes in terms of rows and columns, for example 16 x 2, 20 x 4 etc. All these LCD display works with same principle except they can show less or more content.
 
-Here we will be interfacing LCD 16 x 2.
+Alphanumeric LCD are available in different sizes in terms of rows and columns, for example 16x1, 16x2, 20x4 etc. All these LCD display works with same principle except they can show less or more content.
+
+LCD 16x2 is one of the most popular display in Embedded systems.
 
 >Where 16 x 2 means
 >
