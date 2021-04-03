@@ -17,11 +17,13 @@ Small displays are awesome for displaying data for any Embedded System. It is al
 
   - [LCD 16x2 Pin Map](#lcd-16x2-pin-map)
 
-  - [LCD 16x2 Configuration Commands/Instructions](#lcd-16x2-configuration-commands/instructions)
+  - [LCD 16x2 Interfacing with Bluepill](#lcd-16x2-interfacing-with-bluepill)
+
+  - [LCD 16x2 Commands/Instructions](#lcd-16x2-commands/instructions)
 
   - [LCD 16x2 Commands Sequences](#lcd-16x2-commands-sequences)
 
-  - [Code](#code)
+  - [Lets Get into Writing LCD Driver](#lets-get-into-writing-lcd-driver)
 
   - [Acknowledgements and Resources](#acknowledgements-and-resources)
 
@@ -88,12 +90,42 @@ LCD 16x2 is one of the most popular display in Embedded systems.
 <br>
 
 
->Please Note: In this article we are only interested in Displaying Data (Data Write), thus R/W pin is connected to ground permanently (ie For data Write R/W should be Low).
+>Please Note: In this example we are only interested in Displaying Data (Data Write), thus R/W pin is connected to ground permanently (ie For data Write R/W should be Low).
 
 <br>
 
+## LCD 16x2 Interfacing with Bluepill
 
-## LCD 16x2 Configuration Commands/Instructions
+<p align="center">
+  <img src="./Assets/lcd_schem.jpg">
+</p>
+
+**Control Pins**
+
+- RS (Register Select Pin) is connected to PA0.
+
+- RW (Read Write Pin) is connected to GND as this article is only intrested to Write (Display) data on LCD 16x2.
+
+- En (Enable Pin) is connected to PA1.
+
+**Data Pins**
+
+- D4,D5,D6,D7 LCD Data pins are connected to PA2, PA3, PA4, PA5 respectively.
+
+- Other Data pins (D0, D1, D2, D3) are left unconnected.
+
+>Please Note in this example we are operating LCD 16x2 in 4-Bit Data Lenght Mode.
+
+**Power, Contrast and Backlit Pins**
+
+- Vss is Connected to GND and VDD is connected to 5v Pin.
+
+- Vo is connected to potentiometer of 10K to control the contrast.
+
+- Backlit Anode pin is connected to 5v and Cathode is connected to collector BC547 (NPN) transitor, Emiiter of transistor is grounded and the base of transistor is connected to PC13 to switch ON and OFF the backlit.
+
+
+## LCD 16x2 Commands/Instructions
 
 Below is the image of some of the commands given in datasheet.
 
@@ -179,11 +211,11 @@ Below is the image of some of the commands given in datasheet.
 >
 >- Write Low to RS Pin of LCD. (RS = 0)
 >
->- Send High to Low pulse on EN Pin of LCD. (EN = 1; delay (15); EN = 0)
+>- Send High to Low pulse on EN Pin of LCD. (EN = 1; delay_ms(1); EN = 0)
 >
 >- Place lower nibble on data lines.
 >
->- Send High to Low pulse on EN Pin of LCD. (EN = 1; delay(15); EN = 0)
+>- Send High to Low pulse on EN Pin of LCD. (EN = 1; delay_ms(1); EN = 0)
 
 <br>
 
@@ -197,17 +229,82 @@ Below is the image of some of the commands given in datasheet.
 >
 >- Write High to RS Pin of LCD. (RS = 1)
 >
->- Send High to Low pulse on EN Pin of LCD. (EN = 1; delay(15); EN = 0)
+>- Send High to Low pulse on EN Pin of LCD. (EN = 1; delay_ms(1); EN = 0)
 >
 >- Place lower nibble on data lines.
 >
->- Send High to Low pulse on EN Pin of LCD. (EN = 1; delay(15); EN = 0)
+>- Send High to Low pulse on EN Pin of LCD. (EN = 1; delay_ms(1); EN = 0)
 
 <br>
 
-## Code
+## Lets Get into Writing LCD Driver
 
-- The code and STMCUBEIDE workspace for LCD 16x2 example can be found at [LCD16x2_f103](https://github.com/ashishkumarpardeshi/STM32f10xx_Exploration/tree/master/LCD16x2_f103)
+- The complete code, driver and STMCUBEIDE workspace for LCD 16x2 example can be found at [LCD16x2_f103](https://github.com/ashishkumarpardeshi/STM32f10xx_Exploration/tree/master/LCD16x2_f103).
+
+### Starting with **STM32f103xx_lcd_driver.h**
+
+STM32f103xx_lcd_driver.h is the header file for alphanumeric LCD driver and it will consist of followings:
+
+- Macros defining LCD type.
+
+- Macros defining the LCD Control and Data pin interfacing with STM32f103C8.
+
+- Member Functions/APIs for writing Data/Command, Setting Cursor, Shift left and right etc.
+
+So lets start writing this header file.
+
+```C
+
+#ifndef STM32F103XX_LCD_DRIVER_H_
+#define STM32F103XX_LCD_DRIVER_H_
+
+
+#include "STM32f103xx.h"					// including target header file
+
+#include "STM32f103xx_gpio_driver.h"		// including GPIO Driver header file
+
+/******************************************************************************************************
+ * 	User can edit these macros for defining display type, LCD Control bits, LCD Data bits etc
+*****************************************************************************************************/
+
+ /****** Define Display Type here *********************************/
+
+//Number of Rows of the display (upto 4 only)
+#define LCD_ROWS			2
+
+//Number of Cols of the display (16 or 20)
+#define LCD_COLS			16
+
+// Define Data Mode (4-Bit or 8-Bit) for Display operation
+
+#define LCD_DATA_MODE		4	// or 8
+
+//----------------------------------------------------------------
+
+// Define LCD Control Port/lines (All Control lines should be on same Port)
+
+#define LCD_CONTROL_PORT	GPIOA
+
+#define LCD_RS_PIN			GPIO_PIN_NO_0
+#define LCD_EN_PIN			GPIO_PIN_NO_1
+
+//----------------------------------------------------------------
+
+// Define LCD Data Port/lines (All Data lines should be on same Port)
+
+#define LCD_DATA_PORT		GPIOA
+
+
+#define LCD_D4_PIN			GPIO_PIN_NO_2
+#define LCD_D5_PIN			GPIO_PIN_NO_3
+#define LCD_D6_PIN			GPIO_PIN_NO_4
+#define LCD_D7_PIN			GPIO_PIN_NO_5
+
+//-----------------------------------------------------------------
+```
+
+
+<br>
 
 ## Acknowledgements and Resources
 
