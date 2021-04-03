@@ -97,7 +97,7 @@ LCD 16x2 is one of the most popular display in Embedded systems.
 ## LCD 16x2 Interfacing with Bluepill
 
 <p align="center">
-  <img src="./Assets/lcd_schem.jpg">
+  <img src="./Assets/lcdsch.jpg">
 </p>
 
 **Control Pins**
@@ -239,7 +239,7 @@ Below is the image of some of the commands given in datasheet.
 
 ## Lets Get into Writing LCD Driver
 
-- The complete code, driver and STMCUBEIDE workspace for LCD 16x2 example can be found at [LCD16x2_f103](https://github.com/ashishkumarpardeshi/STM32f10xx_Exploration/tree/master/LCD16x2_f103).
+- The example main code, LCD driver and the complete STMCUBEIDE workspace for LCD 16x2 example can be found at [LCD16x2_f103](https://github.com/ashishkumarpardeshi/STM32f10xx_Exploration/tree/master/LCD16x2_f103).
 
 ### Starting with **STM32f103xx_lcd_driver.h**
 
