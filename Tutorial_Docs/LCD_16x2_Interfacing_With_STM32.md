@@ -21,7 +21,10 @@ Small displays are awesome for displaying data for any Embedded System. It is al
 
   - [LCD 16x2 Commands Sequences](#lcd-16x2-commands-sequences)
 
+  - [Code](#code)
+
   - [Acknowledgements and Resources](#acknowledgements-and-resources)
+
   - [License](#license)
 
   <br>
@@ -201,6 +204,10 @@ Below is the image of some of the commands given in datasheet.
 >- Send High to Low pulse on EN Pin of LCD. (EN = 1; delay(15); EN = 0)
 
 <br>
+
+## Code
+
+- The code and STMCUBEIDE workspace for LCD 16x2 example can be found at [LCD16x2_f103](https://github.com/ashishkumarpardeshi/STM32f10xx_Exploration/tree/master/Display_LCD16x2_f103)
 
 ## Acknowledgements and Resources
 
