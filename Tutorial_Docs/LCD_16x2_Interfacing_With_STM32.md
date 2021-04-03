@@ -207,7 +207,7 @@ Below is the image of some of the commands given in datasheet.
 
 ## Code
 
-- The code and STMCUBEIDE workspace for LCD 16x2 example can be found at [LCD16x2_f103](https://github.com/ashishkumarpardeshi/STM32f10xx_Exploration/tree/master/Display_LCD16x2_f103)
+- The code and STMCUBEIDE workspace for LCD 16x2 example can be found at [LCD16x2_f103](https://github.com/ashishkumarpardeshi/STM32f10xx_Exploration/tree/master/LCD16x2_f103)
 
 ## Acknowledgements and Resources
 
