@@ -113,6 +113,42 @@ Now its time to indentify the required APIs for USART driver Development, these 
 
 <br>
 
+## USART Registers Definition Structure
+
+At first lets look for USART Registers map in STM32F103xx reference manual.
+
+<p align="center">
+  <img src="./Assets/USART_reg_map.png">
+</p>
+
+<br>
+
+In the above table we have all the USART registers with their offset addresses.
+
+Now lets write a USART Registers Definition structure for USARTx peripheral.
+
+```C
+    /*
+    * Registers Definition Structure for USARTx peripheral
+    */
+
+    typedef struct
+    {								//OFFset Address
+        __vo uint32_t SR;			//0x00
+        __vo uint32_t DR;			//0x04
+        __vo uint32_t BRR;			//0x08
+        __vo uint32_t CR1;			//0x0B
+        __vo uint32_t CR2;			//0x10
+        __vo uint32_t CR3;			//0x14
+        __vo uint32_t GTPR;			//0x18
+
+    } USART_RegDef_t;
+``` 
+
+>Please Note: The ***USART_RegDef_t*** structure will be written in **STM32f103xx.h** target header file.
+
+<br>
+
 ## USART Configuration Structure
 
 Lets write a configuration structure for USARTx peripheral.
