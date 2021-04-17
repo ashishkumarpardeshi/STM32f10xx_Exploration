@@ -1,5 +1,15 @@
+# USART Driver Development
+
+In this article we will try develop a driver for USART Peripheral of STM32 MCU completly from scratch ie at first will get into datasheet, then identifying the user configurable data and required APIs finally followed by sample application program using these APIs.
+
+<br>
+
 ## Table of Contents
   - [USART Driver Development](#usart-driver-development)
+
+  - [Table of Contents](#table-of-contents)
+
+  - [USART Peripheral in Datasheet](#usart-peripheral-in-datasheet)
 
   - [Code Development Layers](#code-development-layers)
 
@@ -19,7 +29,7 @@
 
   <br>
 
-# USART Driver Development
+## USART Peripheral in Datasheet
 
 Lets dive into developing the USART Driver for STM32.
 
@@ -35,7 +45,9 @@ From this block diagram we can clearly see, STM32F103xx MCUs have three USARTs (
 
 - USART 2 and USART 3 are hanging on APB1 Bus.
 
-> Here it is important to note the Bus for each of the USART is hanging on in order to enable the USART clock. 
+> Here it is important to note the Bus for each of the USART is hanging on in order to enable the USART clock.
+
+<br>
 
 ## Code Development Layers 
 Lets understand different layers of Code requirements.
@@ -49,6 +61,8 @@ So inside the Hardware layer (ie STM32F103xx MCU) we have different peripherals 
 To use these peripherals and configure them as per application it is always good to write a driver for them and then accessing their drivers API function to call them in sample application code.
 
 So here we will be writing USART driver, starting with ***User Configurable Items***.
+
+<br>
 
 ## User Configurable Items
 
@@ -97,6 +111,8 @@ Now its time to indentify the required APIs for USART driver Development, these 
 
 - Other USART Management APIs
 
+<br>
+
 ## USART Configuration Structure
 
 Lets write a configuration structure for USARTx peripheral.
@@ -117,6 +133,8 @@ Lets write a configuration structure for USARTx peripheral.
     } USART_Config_t;
 ``` 
 
+<br>
+
 ## USART Handling Structure
 
 Lets write a Handling structure for USARTx peripheral.
@@ -135,6 +153,8 @@ Lets write a Handling structure for USARTx peripheral.
 ``` 
 
 >Please Note: The above two structures (USART Configuration Structure and USART Handling Structure) will be written in **STM32f103xx_USART_Driver.h** file (one can use any name for USART driver header file).
+
+<br>
 
 ## Implementing the Driver
 
@@ -182,9 +202,9 @@ Lets write a Handling structure for USARTx peripheral.
     * USART Peripheral Clock Enable or Disable API
     */
     void USART_PeripheralControl(USART_RegDef_t *pUSARTx, uint8_t EnOrDi);
-
-
 ```
+
+<br>
 
 ## License
 
