@@ -17,6 +17,8 @@ In this article we will try develop a driver for USART Peripheral of STM32 MCU c
 
   - [Required APIs for USART Driver](#required-apis-for-usart-driver)
 
+  - [USART Registers Definition Structure](#usart-registers-definition-structure)
+
   - [USART Configuration Structure](#usart-configuration-structure)
 
   - [USART Handling Structure](#usart-handling-structure)
