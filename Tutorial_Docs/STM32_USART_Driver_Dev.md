@@ -1,3 +1,24 @@
+## Table of Contents
+  - [USART Driver Development](#usart-driver-development)
+
+  - [Code Development Layers](#code-development-layers)
+
+  - [User Configurable Items](#user-configurable-items)
+
+  - [Required APIs for USART Driver](#required-apis-for-usart-driver)
+
+  - [USART Configuration Structure](#usart-configuration-structure)
+
+  - [USART Handling Structure](#usart-handling-structure)
+
+  - [Implementing the Driver](#implementing-the-driver)
+
+  - [Writing the APIs Prototypes](#writing-the-apis-prototypes)
+
+  - [License](#license)
+
+  <br>
+
 # USART Driver Development
 
 Lets dive into developing the USART Driver for STM32.
@@ -149,7 +170,7 @@ Lets write a Handling structure for USARTx peripheral.
 
 <br>
 
-### Writing the APIs Prototypes
+## Writing the APIs Prototypes
 
 ```C
     /*
@@ -164,3 +185,10 @@ Lets write a Handling structure for USARTx peripheral.
 
 
 ```
+
+## License
+
+- Distributed under the  [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) license.
+<p align="center">
+  <img src="./Assets/CC-SA.png">
+</p>
