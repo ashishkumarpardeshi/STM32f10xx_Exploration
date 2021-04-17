@@ -44,7 +44,7 @@ Small displays are awesome for displaying data for any Embedded System. It is al
 
 Alphanumeric LCD are available in different sizes in terms of rows and columns, for example 16x1, 16x2, 20x4 etc. All these LCD display works with same principle except they can show less or more content.
 
-LCD 16x2 is one of the most popular display in Embedded systems.
+LCD 16x2 is one of the most popular display in Embedded system.
 
 >Where 16 x 2 means
 >

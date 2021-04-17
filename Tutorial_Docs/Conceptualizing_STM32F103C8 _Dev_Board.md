@@ -8,7 +8,7 @@ The main goal for designing this board is to boost the exploration and learning 
 <br>
 
 
-## My plan is encorporate most of the followings to this Dev Board with possible compact form factor.
+## My plan is to encorporate most of the followings to this Dev Board with possible compact form factor.
 
 <br>
 
