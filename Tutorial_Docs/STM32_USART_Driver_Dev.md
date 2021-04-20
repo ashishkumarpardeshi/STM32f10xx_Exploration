@@ -5,7 +5,7 @@ In this article we will try develop a driver for USART Peripheral of STM32 MCU c
 <br>
 
 ## Table of Contents
-  - [USART Driver Development](#usart-driver-development)
+  - [USART Peripheral in Datasheet](#usart-peripheral-in-datasheet)
 
   - [Table of Contents](#table-of-contents)
 
