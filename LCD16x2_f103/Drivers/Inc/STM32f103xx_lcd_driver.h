@@ -34,22 +34,22 @@
 
 // Define LCD Control Port/lines (All Control lines should be on same Port)
 
-#define LCD_CONTROL_PORT	GPIOA
+#define LCD_CONTROL_PORT	GPIOB
 
-#define LCD_RS_PIN			GPIO_PIN_NO_0
-#define LCD_EN_PIN			GPIO_PIN_NO_1
+#define LCD_RS_PIN			GPIO_PIN_NO_9
+#define LCD_EN_PIN			GPIO_PIN_NO_8
 
 //----------------------------------------------------------------
 
 // Define LCD Data Port/lines (All Data lines should be on same Port)
 
-#define LCD_DATA_PORT		GPIOA
+#define LCD_DATA_PORT		GPIOB
 
 
-#define LCD_D4_PIN			GPIO_PIN_NO_2
-#define LCD_D5_PIN			GPIO_PIN_NO_3
-#define LCD_D6_PIN			GPIO_PIN_NO_4
-#define LCD_D7_PIN			GPIO_PIN_NO_5
+#define LCD_D4_PIN			GPIO_PIN_NO_7
+#define LCD_D5_PIN			GPIO_PIN_NO_6
+#define LCD_D6_PIN			GPIO_PIN_NO_5
+#define LCD_D7_PIN			GPIO_PIN_NO_4
 
 //-----------------------------------------------------------------
 
@@ -57,7 +57,7 @@
  * 		Structure Variables for LCD Control GPIO and Data GPIO Configuration
  *****************************************************************************************************/
 
-GPIO_Handle_t lcd_Control, lcd_Data;
+//GPIO_Handle_t lcd_Control, lcd_Data;
 
 /*****************************************************************************************************/
 
@@ -156,15 +156,7 @@ void LCD_Clear(void);
  */
 void LCD_SetCursor(uint8_t row, uint8_t col);
 
-/*
- * Write either Command or Data to LCD
- */
-void LCD_Write(uint8_t data, uint8_t rs);
 
-/*
- * Enable Pulse (High to Low Transition)
- */
-void LCD_En_Pulse();
 
 /*
  * Write Character to LCD

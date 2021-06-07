@@ -145,7 +145,17 @@ typedef struct
     __vo uint32_t LCKR;
 }GPIO_RegDef_t;
 
-
+typedef struct
+{
+	__vo uint32_t EVCR;
+	__vo uint32_t MAPR;
+	__vo uint32_t EXTICR1;
+	__vo uint32_t EXTICR2;
+	__vo uint32_t EXTICR3;
+	__vo uint32_t EXTICR4;
+    __vo uint32_t RESERVE;
+    __vo uint32_t MAPR2;
+}AFIO_RegDef_t;
 
 
 /*
@@ -160,6 +170,7 @@ typedef struct
 
 #define RCC						((RCC_RegDef_t*) RCC_BASEADDR)
 
+#define AFIO					((AFIO_RegDef_t*) AFIO_BASEADDR)
 
 
 /************************** Clock Enable Macros Starts from Here *****************************************/

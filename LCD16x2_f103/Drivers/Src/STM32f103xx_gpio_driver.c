@@ -69,6 +69,7 @@ void GPIO_DeInit(GPIO_RegDef_t *pGPIOx)				// Reset the GPIO setting as default
 	else if(pGPIOx == GPIOB)
 	{
 			GPIOB_REG_RESET();
+
 	}
 	else if(pGPIOx == GPIOC)
 	{
@@ -113,6 +114,7 @@ void GPIO_PeriClkControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi)
 		{
 			GPIOE_PCLK_EN();
 		}
+			//AFIO_PCLK_EN();
 	}
 	else
 	{
@@ -136,6 +138,8 @@ void GPIO_PeriClkControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi)
 		{
 			GPIOE_PCLK_DI();
 		}
+
+			//AFIO_PCLK_DI();
 	}
 
 }

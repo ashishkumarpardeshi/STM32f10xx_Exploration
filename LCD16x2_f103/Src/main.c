@@ -30,6 +30,8 @@ int main(void)
 
 	uint16_t i = 0;
 
+	//GPIO_DeInit(GPIOB);
+
 	GPIO_PeriClkControl(GPIOC, ENABLE);
 
 	GPIO_Handle_t redled;
@@ -40,6 +42,8 @@ int main(void)
 	redled.GPIO_PinConfig.GPIO_PinOutInType = GPIO_OP_PP;
 
 	GPIO_Init(&redled);
+
+	GPIO_WritePin(GPIOC, GPIO_PIN_NO_13, GPIO_PIN_SET);
 
 
 	LCD_Init();
@@ -55,7 +59,7 @@ int main(void)
 	LCD_WriteString("**  Workbench **");
 
 
-	delay_ms(2000);
+	delay_ms(4000);
 
 	LCD_Clear();
 	LCD_SetCursor(0,0);
