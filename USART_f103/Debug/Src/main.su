@@ -1,0 +1,4 @@
+main.c:40:5:main	24	static
+main.c:65:6:USART2_GPIOInit	16	static
+main.c:83:6:USART2_Init	8	static
+main.c:97:6:delay_ms	24	static,ignoring_inline_asm

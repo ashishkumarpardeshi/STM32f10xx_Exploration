@@ -1,0 +1,7 @@
+STM32f103xx_usart_driver.c:24:6:USART_Init	24	static
+STM32f103xx_usart_driver.c:135:6:USART_PeriClockControl	16	static
+STM32f103xx_usart_driver.c:190:6:USART_SetBaudRate	40	static
+STM32f103xx_usart_driver.c:254:6:USART_PeripheralControl	16	static
+STM32f103xx_usart_driver.c:281:9:USART_GetFlagStatus	16	static
+STM32f103xx_usart_driver.c:307:6:USART_SendData	32	static
+STM32f103xx_usart_driver.c:369:6:USART_ReceiveData	32	static
