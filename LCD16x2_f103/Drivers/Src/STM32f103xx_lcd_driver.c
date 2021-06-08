@@ -117,19 +117,23 @@ void LCD_Init() // Initialize the LCD
 
 	LCD_Write(0x03, CMD);				// again Send 0x03;
 
-	LCD_Write(0x02, CMD);				// 4-Bit Mode
+	LCD_Write(0x02, CMD);				// Send 0x02;
 
-	LCD_Write(LCD_4BITMODEDL, CMD);		// Configure LCD in 4-Bit Mode (0x28)
+	//LCD_Write(LCD_4BITMODEDL, CMD);		// Configure LCD in 4-Bit Mode (0x28)
+	LCD_Write(LCD_4BIT_5X8_2LINE, CMD);
 
-	LCD_Write(LCD_DisCurBlink, CMD);	//	Display ON, Cursor ON, Blink ON
+	//LCD_Write(LCD_DisCurBlink, CMD);	//	Display ON, Cursor ON, Blink ON
+	LCD_Write(LCD_DISPLAY_ON_CURSOR_ON, CMD);
 
 	LCD_Write(LCD_CLEAR_DISPLAY, CMD);	// Clear the display
 
 	delay_ms(2);						// After clear cmd wait for 2 ms
 
-	LCD_Write(LCD_INCCurNoShift, CMD);	//  Increment the Cursor
+	//LCD_Write(LCD_INCCurNoShift, CMD);	//  Increment the Cursor
+	LCD_Write(LCD_INC_SHIFT_OFF, CMD);
 
-	LCD_Write(LCD_CurPosition, CMD);	//  Initial Cursor Position 0th position @ Line 1
+	//LCD_Write(LCD_CurPosition, CMD);	//  Initial Cursor Position 0th position @ Line 1
+	LCD_Write(LCD_ROW0COL0_ADDR, CMD);
 
 
 /*********************************************************************************************/
@@ -138,12 +142,52 @@ void LCD_Init() // Initialize the LCD
 
 /**
   ******************************************************************************
+  * @brief	Scrol Display Right/Left
+  * @param	RIGHT or LEFT
+  * @retval	None
+  ******************************************************************************
+  */
+void LCD_Display_Scroll(uint8_t direction)
+{
+	if(direction == 1)
+	{
+		LCD_Write(LCD_DISPLAY_SHIFT_RIGHT, CMD);
+	}
+	else
+	{
+		LCD_Write(LCD_DISPLAY_SHIFT_LEFT, CMD);
+	}
+
+}
+
+/**
+  ******************************************************************************
+  * @brief	Shift Cursor Right/Left
+  * @param	RIGHT or LEFT
+  * @retval	None
+  ******************************************************************************
+  */
+void LCD__Cursor_Shift(uint8_t direction)
+{
+	if(direction == 1)
+	{
+		LCD_Write(LCD_CURSOR_SHIFT_RIGHT, CMD);
+	}
+	else
+	{
+		LCD_Write(LCD_CURSOR_SHIFT_LEFT, CMD);
+	}
+
+}
+
+
+/**
+  ******************************************************************************
   * @brief	Clear the LCD.
   * @param	None
   * @retval	None
   ******************************************************************************
   */
-
 void LCD_Clear(void)
 {
 
@@ -152,6 +196,7 @@ void LCD_Clear(void)
 	delay_ms(2);						// After clear cmd wait for 2 ms
 
 }
+
 
 
 /**
@@ -167,17 +212,17 @@ void LCD_SetCursor(uint8_t row, uint8_t col)
 {
 	#if LCD_ROWS == 1
 
-		LCD_Write(col + 0x80,CMD);
+		LCD_Write(LCD_ROW0COL0_ADDR + col,CMD);
 
 	#elif LCD_ROWS == 2
 
 		if(row == 0)
 		{
-			col = col + 0x80;
+			col = col + LCD_ROW0COL0_ADDR;
 		}
 		else
 		{
-			col = col + 0xC0;
+			col = col + LCD_ROW1COL0_ADDR;
 		}
 
 		LCD_Write(col,CMD);
@@ -186,19 +231,19 @@ void LCD_SetCursor(uint8_t row, uint8_t col)
 
 		if(row == 0)
 		{
-			col = col + 0x80;
+			col = col + LCD_ROW0COL0_ADDR;
 		}
 		else if(row == 1)
 		{
-			col = col + 0xC0;
+			col = col + LCD_ROW1COL0_ADDR;
 		}
 		else if(row == 2)
 		{
-			col = col + 0x94;
+			col = col + LCD_ROW2COL0_ADDR;
 		}
 		else
 		{
-			col = col + 0xD4;
+			col = col + LCD_ROW3COL0_ADDR;
 		}
 
 		LCD_Write(col,CMD);
@@ -294,11 +339,25 @@ static void LCD_En_Pulse()
 
 }
 
+/**
+  ******************************************************************************
+  * @brief	Write a Character on LCD
+  * @param	Character to display
+  * @retval	None
+  ******************************************************************************
+*/
 void LCD_WriteChar(uint8_t character)
 {
 	LCD_Write(character, DATA);
 }
 
+/**
+  ******************************************************************************
+  * @brief	Write a String on LCD
+  * @param	String to display
+  * @retval	None
+  ******************************************************************************
+*/
 void LCD_WriteString(const char* string)
 {
 	while(*string)
@@ -308,6 +367,13 @@ void LCD_WriteString(const char* string)
 	}
 }
 
+/**
+  ******************************************************************************
+  * @brief	Write an Integer on LCD
+  * @param	Integer to display
+  * @retval	None
+  ******************************************************************************
+*/
 void LCD_WriteInteger(uint16_t intvalue)
 {
 	uint8_t i = 0;
@@ -354,6 +420,14 @@ void LCD_WriteInteger(uint16_t intvalue)
 
 }
 
+
+/**
+  ******************************************************************************
+  * @brief	Delay in milliseconds
+  * @param	time in ms
+  * @retval	None
+  ******************************************************************************
+*/
 void delay_ms(uint32_t ms)
 {
 	uint32_t delay = ms * 668;
@@ -362,7 +436,13 @@ void delay_ms(uint32_t ms)
 }
 
 
-
+/**
+  ******************************************************************************
+  * @brief	Delay in milliseconds
+  * @param	time in ms
+  * @retval	None
+  ******************************************************************************
+*/
 void delay_us(uint32_t us)
 {
 	uint32_t delay = (us * 0.668) + 1;

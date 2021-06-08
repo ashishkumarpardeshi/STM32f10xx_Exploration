@@ -52,12 +52,29 @@ int main(void)
 
 	LCD_SetCursor(0,0);
 
-	LCD_WriteString("**** Ashish ****");
+	LCD_WriteString(" Ashish ");
 
 	LCD_SetCursor(1,0);		// Set Cursor to line 1, position 0 (or row 1 and col 0)
 
-	LCD_WriteString("**  Workbench **");
+	LCD_WriteString("Workbench");
 
+	delay_ms(2000);
+
+	//******************* Scroll Display Right than Left ***************
+
+	for(i=0;i<7;i++)
+	{
+		LCD_Display_Scroll(RIGHT);
+		delay_ms(400);
+
+	}
+	for(i=0;i<7;i++)
+	{
+		LCD_Display_Scroll(LEFT);
+		delay_ms(400);
+
+	}
+	//*********************************************************************
 
 	delay_ms(4000);
 
