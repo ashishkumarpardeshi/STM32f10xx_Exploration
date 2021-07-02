@@ -80,6 +80,8 @@ That is the LSB of master shift register is connected serially to the MSB of sla
 
 Similarly the LSB of slave shift register is connected to MSB of master shift register via MISO.
 
+> ### In SPI communiaction Clock is only produced when the Data is placed on MOSI Line.
+
 
 ## SPI Communication Configuration
 
@@ -92,6 +94,79 @@ By default SPI is configured for full duplex communication.
 
 - ***Simplex Communication***
 
+## SPI Clock Polarity and Clock Phase 
 
-### In SPI communiaction SPI is only produced when the Data is placed on MOSI Line.
+As we discussed earlier SPI is a Synchrobous protocol which means data is communicated (sampled and driven) between master and slave device is in sync with clock signal.
 
+But how? as we already know clock is a square wave transitioning between HIGH and LOW states. And when we define clock signals in terms of its speed that is say X MHz there are X Mega Clock cycles in a second.
+
+In each clock cycle there is one rising edge and one falling edge. So each clock cycle samples and drive new data (basically a new character).
+
+The data is sampled/driven at certain edge of the clock cycle. Okay cool! time to understand which edge of the clock cycle, is it the rising edge or the falling edge?
+
+Well, this introduces the parameter called *Clock Phase (CPHA)*, which defines following:
+
+- **When CPHA is 0  the data is sampled at first edge.**
+
+- **When CPHA is 1 the data is sampled at second edge.**
+
+Remember this doesn't mean directly with rising and falling edge of the clock but it is relative to the idle state of the clock and this introduces us another parameter called *Clock Polarity (CPOL)*.
+
+CPOL defines what will be idle state (either HIGH or LOW) of clock signal when there is no trnasmission (no exchange of data) between master and slave or vice versa is happening.
+
+- **When CPOL is 0, Idle state of clock is LOW**
+
+- **When CPOl is 1, Idle state of clock is HIGH**
+
+For SPI communication we need to set these two important parameters (CPOL and CPHA) values in the registers.
+
+Lets observe some plots for different combination of CPOL and CPHA.
+
+***1. CPOL = 0 and CPHA = 0***
+
+  <p align="center">
+    <img src="./Assets/CPOL0_CPHA0.jpg">
+  </p>
+
+  > In this case idle state of clock is LOW and data is sampled at first edge (Rising Edge) of the clock and driven (appers) at the second edge of the clock.
+
+<br>
+
+***2. CPOL = 1 and CPHA = 0***
+  <p align="center">
+    <img src="./Assets/CPOL_1CPHA_0.png">
+  </p>
+
+  > In this case idle state of clock is HIGH and data is sampled at first edge (Falling Edge) of the clock and driven at the second edge of the clock.
+
+  ***3. CPOL = 0 and CPHA = 1***
+
+  <p align="center">
+    <img src="./Assets/CPOL_0CPHA_1.png">
+  </p>
+
+  > In this case idle state of clock is HIGH and data is sampled at first edge (Falling Edge) of the clock and driven at the second edge of the clock.
+
+
+<br>
+
+***4. CPOL = 1 and CPHA = 1***
+
+  <p align="center">
+    <img src="./Assets/CPOL_1CPHA_1.png">
+  </p>
+
+  > In this case idle state of clock is HIGH and data is sampled at first edge (Rising Edge) of the clock and driven at the second edge of the clock.
+
+  >
+  >
+  ### ***Conclusion***
+    Data Sampling means Data capture at recieving end and Data driving means Data appear/loading on Data (MISO/MOSI) line.
+    
+    CPHA controls at which clock edge (1st or 2nd) of SCLK (Serial Clock) the data will sapmle by reciever.
+
+
+  ## Slave Selection Management
+
+
+  
