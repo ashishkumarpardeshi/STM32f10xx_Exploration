@@ -1,0 +1,9 @@
+STM32f103xx_SPI_driver.c:29:6:SPI_PeriClkControl	16	static
+STM32f103xx_SPI_driver.c:74:6:SPI_PeriControl	16	static
+STM32f103xx_SPI_driver.c:100:6:SPI_SSIConfig	16	static
+STM32f103xx_SPI_driver.c:127:6:SPI_SSOEConfig	16	static
+STM32f103xx_SPI_driver.c:151:6:SPI_Init	24	static
+STM32f103xx_SPI_driver.c:218:6:SPI_Deinit	16	static
+STM32f103xx_SPI_driver.c:232:9:SPI_GetFlagStatus	16	static
+STM32f103xx_SPI_driver.c:257:6:SPI_WriteData	32	static
+STM32f103xx_SPI_driver.c:322:6:SPI_ReadData	24	static

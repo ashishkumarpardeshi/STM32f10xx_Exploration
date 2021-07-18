@@ -1,0 +1,6 @@
+"Drivers/Src/STM32f103xx_SPI_driver.o"
+"Drivers/Src/STM32f103xx_gpio_driver.o"
+"Src/SPI1_HWSSM_Test.o"
+"Src/syscalls.o"
+"Src/sysmem.o"
+"Startup/startup_stm32f103c8tx.o"

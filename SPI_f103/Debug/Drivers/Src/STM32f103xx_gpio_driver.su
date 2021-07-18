@@ -1,0 +1,13 @@
+STM32f103xx_gpio_driver.c:20:6:GPIO_Init	32	static
+STM32f103xx_gpio_driver.c:65:6:GPIO_DeInit	16	static
+STM32f103xx_gpio_driver.c:95:6:GPIO_PeriClkControl	16	static
+STM32f103xx_gpio_driver.c:152:6:AFIO_PeriClkControl	16	static
+STM32f103xx_gpio_driver.c:172:9:GPIO_ReadPin	24	static
+STM32f103xx_gpio_driver.c:180:10:GPIO_ReadPort	24	static
+STM32f103xx_gpio_driver.c:188:6:GPIO_WritePin	16	static
+STM32f103xx_gpio_driver.c:201:6:GPIO_WritePort	16	static
+STM32f103xx_gpio_driver.c:206:6:GPIO_TogglePin	16	static
+STM32f103xx_gpio_driver.c:212:6:GPIO_Atomic_SetResetPin	16	static
+STM32f103xx_gpio_driver.c:225:6:GPIO_Atomic_ResetPin	16	static
+STM32f103xx_gpio_driver.c:237:6:delay_ms	24	static,ignoring_inline_asm
+STM32f103xx_gpio_driver.c:252:6:delay_us	24	static,ignoring_inline_asm
