@@ -1,8 +1,8 @@
 # STM32 SPI implementation
 
-We have previously tried to understand the general concept about [Serial Peripheral Interface (SPI)](Serial_Peripheral_Interface.md). 
+We had previously tried to understand the general concept about [Serial Peripheral Interface (SPI)](Serial_Peripheral_Interface.md). 
 
-In this doc will try to understand how we can implement Bare Metal SPI Peripheral Communication on STM32F103xx.
+In this article will try to understand how we can implement the Bare Metal SPI Peripheral Communication on STM32F103xx.
 
 > Basically we will be writing the SPI Peripheral Driver at register level. Will be implementing the several APIs which can be called in our main program for SPI communication.
 
@@ -24,11 +24,11 @@ In this doc will try to understand how we can implement Bare Metal SPI Periphera
 
   - [SPI Peripheral User Configurable Items](#spi-peripheral-user-configurable-items)
 
-  - [Writing SPI register Defination Structure](#writting-spi-register-definition-structure)
+  - [Writing SPI register Definition Structure](#writing-spi-register-definition-structure)
 
-  - [SPI Clock Polarity and Clock Phase](#spi-clock-polarity-and-clock-phase)
+  - [Writing SPI Config structure and Handle Structure](#writing-spi-config-structure-and-handle-structure)
 
-  - [Slave Selection Management](#slave-selection-management)
+  - [Writing APIs Decalaration to SPI Driver Header File](#writing-apis-decalaration-to-spi-driver-header-file)
 
   - [Acknowledgements and Resources](#acknowledgements-and-resources)
 
@@ -39,9 +39,9 @@ In this doc will try to understand how we can implement Bare Metal SPI Periphera
 
 ## Knowing SPI features of STM32F103xx
 
-Lets get into the STM32f103xx datasheet to know about the SPI peripheral.
+Lets get into the STM32F103xx datasheet to know more about the SPI peripheral.
 
-Remember to carefully look for the parameters as per your MCU part number, In this case our MCU part number is STM32F103C8T6. Therfore we will look into STM32F103Cx column.
+Remember to look carefully for the parameters as per your MCU part number, In this case our MCU part number is STM32F103C8T6. Therefore we will look into STM32F103Cx column.
 Also Note that this MCU falls under Medium-Density Device so select table accordingly.
  
 <p align="center">
@@ -176,7 +176,7 @@ The required User Configurable items are as follows:
 - Configuring the SPI Serial Clock frequency
 
 
-## Writing SPI register Defination Structure
+## Writing SPI Register Definition Structure
 
 Lets look at the SPI Registers in the STM32F103xx Reference Manual we will be configuring these register as per our user configuarable items. 
 
@@ -184,7 +184,7 @@ Lets look at the SPI Registers in the STM32F103xx Reference Manual we will be co
   <img src="Assets/SPI_reg_map.png">
 </p>
 
-At first we have to add the addresses of these registers in our ***target (STM32f103xx.h) header*** file by creating a register definition structure.
+At first we have to add the addresses of these registers in our ***target (STM32f103xx.h) header*** file by creating a SPI register definition structure.
 
 We have to form the address of these register with the help of their Offset adresses and the Base Address of APB1 and APB2 bus.
 
@@ -197,13 +197,14 @@ Lets get into writing this part of code.
 *   
 *   1. Defining the Base Address of SPIx using their Bus Base address
 *
-*   2. Defining the SPI Register Definition Structure (SPI_RegDef_t) with all SPI registers offset addresses matched to the index of structure
+*   2. Defining the SPI Register Definition Structure (SPI_RegDef_t) with all SPI registers offset 
+* addresses matched to the index of structure
 *
 *   3. Typecast the SPIx Peripheral base addresses to SPI_RegDef_t structure variable.
 *
 *   4. Defining the SPIx Peripheral Clock Anable and Disable Macros.
 *
-*   5. Defining the SPIx Peripheral Reset Macros
+*   5. Defining the SPIx Peripheral Reset Macros.
 */
 
 
@@ -272,7 +273,173 @@ typedef struct
 
                               }while(0)
 
+```
 
+
+## Writing SPI Config structure and Handle Structure 
+Cool so we have added the required code for SPI Peripherals in the MCU target file now lets move further and create SPI driver file (STM32F103xx_SPI_driver.h) in which we will be creating two Structures:
+
+- Config Structure (This structure helps with User Configurable Items)
+
+- Handle Structure (This structure will handle RegDef and config structure)
+
+
+```C
+
+#ifndef STM32F103XX_SPI_DRIVER_H_
+#define STM32F103XX_SPI_DRIVER_H_
+
+#include "STM32f103xx.h"					// including target header file
+
+
+
+/*
+ * Configurable structure for SPI
+ */
+
+typedef struct
+{
+	uint8_t SPI_Mode;       // master/slave mode
+	uint8_t SPI_BusConfig;  // FDD/SD   
+	uint8_t SPI_CLKSpeed;   // Clock Speed
+	uint8_t SPI_DataFormat; // 8-Bit/16-Bit
+	uint8_t SPI_CPHASE;     // Leading edge/trailing edge
+	uint8_t SPI_CPOL;       // Idle State (LOW/HIGH)
+	uint8_t SPI_SlaveMgmt;  // Hardware / Software Slave Management
+}SPI_Config_t;
+
+/*
+ * Handle structure for SPI
+ */
+
+typedef struct
+{
+	// pointer to hold the base address of SPI Peripheral
+	SPI_RegDef_t *pSPIx;	// This hold the base address of SPIx
+	SPI_Config_t SPI_Config;
+
+}SPI_Handle_t;
+
+
+#endif /* STM32F103XX_SPI_DRIVER_H_ */
+
+```
+
+## Adding Macros to SPI Driver Header File
+
+Now we will add required User Configuration Setting macros and SPI Flag Macros for easy writing of code to the same ***STM32F103xx_SPI_driver.h*** file.
+
+```C
+
+/******************************************************************************************************
+ * 		Macros for SPI (User Configuration Setting Macros, SPI Flag Masking Macros)
+ *****************************************************************************************************/
+
+// SPI Mode Select macros
+#define SPI_MODE_MASTER				1
+#define SPI_MODE_SLAVE				0
+
+// Bus Config Macros
+#define SPI_BUS_CONFIG_FD			1
+#define SPI_BUS_CONFIG_HD			2
+#define SPI_BUS_CONFIG_SIM_RXONLY 	3
+
+// SPI CLock Baudrate Selction Macros
+#define SPI_CLKSPEED_FPCLK_2			0
+#define SPI_CLKSPEED_FPCLK_4			1
+#define SPI_CLKSPEED_FPCLK_8			2
+#define SPI_CLKSPEED_FPCLK_16			3
+#define SPI_CLKSPEED_FPCLK_32			4
+#define SPI_CLKSPEED_FPCLK_64			5
+#define SPI_CLKSPEED_FPCLK_128			6
+#define SPI_CLkSPEED_FPCLK_256			7
+
+// Data Frame Format Macros
+#define SPI_DFF_8BIT				0
+#define SPI_DFF_16BIT				1
+
+// CPOL and CPHASE Macros
+#define SPI_CPOL_0_IDLE				0
+#define SPI_CPOL_1_IDLE				1
+
+#define SPI_CPHASE_DATA_LEAD_EDGE	0
+#define SPI_CPHASE_DATA_TRAIL_EDGE	1
+
+// Slave Management Macros
+#define SPI_SSM_DI					0
+#define SPI_SSM_EN 					1
+
+// SPI Enable Macros
+#define SPI_EN						1
+#define SPI_DI						0
+
+
+// Other Macros
+
+
+// SPI FLAG MASKING MACROS
+#define SPI_TXE_FLAG	(1 << SPI_SR_TXE)			// TX Buffer Empty Flag
+#define SPI_RXNE_FLAG	(1 << SPI_SR_RXNE)			// RX Buffer Empty Flag
+#define SPI_BSY_FLAG	(1 << SPI_SR_BSY)			// SPI Communication Busy Flag
+
+```
+
+<br>
+
+## Writing APIs Decalaration to SPI Driver Header File
+
+Okay so now we have decalare the SPI APIs in the same **STM32F103xx_SPI_driver.h*** file. Hope we remember the section [SPI Driver APIs Requirement](#spi-driver-apis-requirement), where we put a thought on required APIs to setup successfull communication betwwen master and slave.
+
+Lets decalare the SPI APIs:
+
+```C
+
+******************************************************************************************************
+ * 							APIs Supported by this driver
+ * 			For more details about APIs check the function definitions in STM32f103xx_SPI_driver.c
+ *
+ *****************************************************************************************************/
+
+/*
+ * Init and Deint SPIx
+ */
+
+void SPI_Init(SPI_Handle_t *pSPIHandle);
+void SPI_DeInit(SPI_RegDef_t *pSPIx);
+
+/*
+ * SPI Get Status Flag
+ */
+uint8_t SPI_GetFlagStatus(SPI_RegDef_t *pSPIx, uint32_t FlagName);
+
+/*
+ * SPI Peripheral Clock Setup
+ */
+
+void SPI_PeriClkControl(SPI_RegDef_t *pSPIx, uint8_t EnorDi);
+
+/*
+ * SPI Peripheral Enable or Disable
+ */
+void SPI_PeriControl(SPI_RegDef_t *pSPIx, uint8_t EnorDi);
+
+/*
+ * SPI SSI Configuration
+ */
+void SPI_SSIConfig(SPI_RegDef_t *pSPIx, uint8_t EnorDi);
+
+/*
+ *  SPI Data Read and Write
+ */
+void SPI_WriteData(SPI_RegDef_t *pSPIx, uint8_t *pTxBuffer, uint32_t Len);
+void SPI_ReadData(SPI_RegDef_t *pSPIx, uint8_t *pRxBuffer, uint32_t Len);
+
+/*
+ *  SPI IRQ Configuration and ISR Handling
+ */
+void SPI_IRQInterruptConfig(uint8_t IRQNumber, uint8_t EnorDi);
+void SPI_PriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority);
+void SPI_IRQHandling(SPI_Handle_t);
 
 
 ```
