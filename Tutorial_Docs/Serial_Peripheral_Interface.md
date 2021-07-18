@@ -128,7 +128,7 @@ Lets observe some plots for different combination of CPOL and CPHA.
     <img src="./Assets/CPOL0_CPHA0.jpg">
   </p>
 
-  > In this case idle state of clock is LOW and data is sampled at first edge (Rising Edge) of the clock and driven (appers) at the second edge of the clock.
+  > In this case idle state of clock is LOW and data is sampled at first edge (Rising Edge) of the clock and driven (appers/toggling) at the second edge of the clock.
 
 <br>
 
@@ -158,15 +158,28 @@ Lets observe some plots for different combination of CPOL and CPHA.
 
   > In this case idle state of clock is HIGH and data is sampled at first edge (Rising Edge) of the clock and driven at the second edge of the clock.
 
-  >
-  >
+  <br>
+
   ### ***Conclusion***
     Data Sampling means Data capture at recieving end and Data driving means Data appear/loading on Data (MISO/MOSI) line.
     
-    CPHA controls at which clock edge (1st or 2nd) of SCLK (Serial Clock) the data will sapmle by reciever.
+    CPHA controls at which clock edge (1st or 2nd) of SCLK (Serial Clock) the data will sample by reciever.
 
+    As per application suitable CPHA and CPOL needs to be selected. For all normal operation CPOL = 0 and CPHA = 1.
+
+  ### Some Important Note Regarding SPI Clock
+
+  > When the data appears/toggle at one of clock edge (Data Loading Edge) must be stablize in some time. This time must be less than and before the Data Sampling Edge because data will be sampled/captured at sampling edge. 
+  >
+  > Thus to avoid wrong data to be captured at sampling edge, stablization time must be less than the half cycle of the clock signal.
+  >
+  > If the cable length is very long and at very high speed SPI Clock, the slave device may not see the real data, it may sample some random data. This is also true for noisy environment.
+  >
+  > When we increase the speed of SPI Clock frequency, the slave will get less amount of time to sample the data transition. Cable length can be increased if we decrease the frequency of the clock.
 
   ## Slave Selection Management
+
+
 
 
   
