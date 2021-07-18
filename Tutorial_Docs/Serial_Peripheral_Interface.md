@@ -1,4 +1,4 @@
-# Serial Peripheral Interface (SPI)
+# Serial Peripheral Interface
 
 SPI is a one of the serial protocol which is used to communicate between one Master device and one or more Slave devices in Embedded Systems. 
 
@@ -12,6 +12,30 @@ SPI is a one of the serial protocol which is used to communicate between one Mas
 </p>
 
 Master can be your host microcontroller and slaves can be devices such as SD Card, Ethernet, Sensors, EEPROM etc.
+
+## Table of Contents
+- [Serial Peripheral Interface](#serial-peripheral-interface)
+
+  - [Table of Contents](#table-of-contents)
+
+  - [SPI Bus](#spi-bus)
+
+  - [SPI Minimal BUS](#spi-minimal-bus)
+
+  - [SPI Slave Selection and Communication](#spi-slave-selection-and-communication)
+
+  - [SPI Hardware Architecture](#spi-hardware-architecture)
+
+  - [SPI Communication Configuration](#spi-communication-configuration)
+
+  - [SPI Clock Polarity and Clock Phase](#spi-clock-polarity-and-clock-phase)
+
+  - [Slave Selection Management](#slave-selection-management)
+
+  - [Acknowledgements and Resources](#acknowledgements-and-resources)
+
+  - [License](#license)
+
 
 ## SPI Bus
 Four I/O pins are used for SPI communication.
@@ -198,6 +222,17 @@ Lets observe some plots for different combination of CPOL and CPHA.
   So whenever there are more than one slave devices connected to a master device then it is not at all possible to use a H/W NSS pin as it can only manage a single slave device. Therefore Software NSS management is required to assign other GPIOs for selecting a particular slave device by driving corresponding GPIO LOW and rest of the GPIOs to HIGH.
 
   > Please refer to the STM32_SPI_Implementation for understanding its code development. 
+
+
+## Acknowledgements and Resources
+
+
+## License
+
+- Distributed under the  [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) license.
+<p align="center">
+  <img src="./Assets/CC-SA.png">
+</p>
 
 
 
