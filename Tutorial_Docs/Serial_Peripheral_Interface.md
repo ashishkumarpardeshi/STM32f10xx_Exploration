@@ -179,6 +179,26 @@ Lets observe some plots for different combination of CPOL and CPHA.
 
   ## Slave Selection Management
 
+  In SPI communication, Master can select the slave in two different ways.
+
+  ***1. Hardware NSS Management***: In this mode the actual NSS pin on the Master is used and connected to the SS pin on the Slave device. 
+
+  >In this case 
+  >
+  > - whenever SPI is enabled, the NSS pin will be pulled LOW automatically and 
+  >
+  >- whenever SPI is disabled, the NSS pin will be pulled HIGH automatically.
+
+  One important thing here to note is that one NSS pin can control only one Slave device. 
+
+  ***2. Software NSS Management***: In this mode other GPIOs of the MCU (Master) can be used for managing the multiple slave devices without relying on the NSS pin of the Master device.
+
+  As the name suggest we can use any GPIO/GPIOs and control them to select a particular slave device for communication by writing LOW to GPIOs register (via Software).
+
+  So whenever there are more than one slave devices connected to a master device then it is not at all possible to use a H/W NSS pin as it can only manage a single slave device. Therefore Software NSS management is required to assign other GPIOs for selecting a particular slave device by driving corresponding GPIO LOW and rest of the GPIOs to HIGH.
+
+  > Please refer to the STM32_SPI_Implementation for understanding its code development. 
+
 
 
 
