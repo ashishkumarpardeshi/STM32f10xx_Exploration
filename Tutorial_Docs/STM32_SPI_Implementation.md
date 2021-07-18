@@ -196,8 +196,14 @@ Lets get into writing this part of code.
 *   So in STM32F103xx.h target header file we willbe   *   adding the following things
 *   
 *   1. Defining the Base Address of SPIx using their Bus Base address
-
 *
+*   2. Defining the SPI Register Definition Structure (SPI_RegDef_t) with all SPI registers offset addresses matched to the index of structure
+*
+*   3. Typecast the SPIx Peripheral base addresses to SPI_RegDef_t structure variable.
+*
+*   4. Defining the SPIx Peripheral Clock Anable and Disable Macros.
+*
+*   5. Defining the SPIx Peripheral Reset Macros
 */
 
 
